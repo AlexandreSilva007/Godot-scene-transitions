@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3nbuc5bw06ij"]
+
+[ext_resource type="Script" path="res://levels/level_2.gd" id="1_amef7"]
+[ext_resource type="Texture2D" uid="uid://dic34kdglckwo" path="res://levels/_16883fc0-1e81-425c-8738-bf7f803e19f2.jpg" id="1_su2x5"]
+[ext_resource type="PackedScene" uid="uid://qpk2rhye1nv" path="res://player/player.tscn" id="2_aj3li"]
+[ext_resource type="PackedScene" uid="uid://5mxhbuqdg83c" path="res://utility/area_2d.tscn" id="4_igvxt"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_amef7")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(573, 90)
+scale = Vector2(1.12012, 1.12012)
+texture = ExtResource("1_su2x5")
+
+[node name="Player" parent="." instance=ExtResource("2_aj3li")]
+position = Vector2(540, 291)
+scale = Vector2(0.5, 0.5)
+
+[node name="Area2D" parent="." instance=ExtResource("4_igvxt")]
+position = Vector2(-50, -279)
+level_name = "start"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

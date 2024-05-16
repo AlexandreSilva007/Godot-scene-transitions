@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c804oqf7xrbx8"]
+
+[ext_resource type="Texture2D" uid="uid://piuw2f6wwho2" path="res://levels/_b9111b3b-4412-46a6-b599-fd913ffbd0a6.jpg" id="1_2mevx"]
+[ext_resource type="Script" path="res://levels/hub_principal.gd" id="1_rj11j"]
+[ext_resource type="PackedScene" uid="uid://qpk2rhye1nv" path="res://player/player.tscn" id="2_qhdah"]
+[ext_resource type="PackedScene" uid="uid://5mxhbuqdg83c" path="res://utility/area_2d.tscn" id="4_t1wbd"]
+
+[node name="HubPrincipal" type="Node2D"]
+script = ExtResource("1_rj11j")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.686275, 0.686275, 0.678431, 1)
+position = Vector2(573, 333)
+scale = Vector2(1.13965, 1.13965)
+texture = ExtResource("1_2mevx")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_qhdah")]
+position = Vector2(543, 177)
+scale = Vector2(0.5, 0.5)
+
+[node name="Area2D" parent="." instance=ExtResource("4_t1wbd")]
+level_name = "level2"
+
+[node name="Area2D2" parent="." instance=ExtResource("4_t1wbd")]
+position = Vector2(735, -39)
+level_name = "level3"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

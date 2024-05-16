@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://5mxhbuqdg83c"]
+
+[ext_resource type="Script" path="res://utility/area_2d.gd" id="1_n2txt"]
+[ext_resource type="Texture2D" uid="uid://bye5ie72p1r0c" path="res://levels/portal.png" id="1_wndgs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13dnw"]
+radius = 148.122
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_n2txt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(180, 421)
+shape = SubResource("CircleShape2D_13dnw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(173, 403)
+scale = Vector2(0.599609, 0.599609)
+texture = ExtResource("1_wndgs")
