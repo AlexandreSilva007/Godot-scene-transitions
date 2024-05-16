@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://viqpch4hn6ej"]
+[gd_scene load_steps=7 format=3 uid="uid://viqpch4hn6ej"]
 
 [ext_resource type="Script" path="res://transitions/scenes/st_hole.gd" id="1_d4ylf"]
 [ext_resource type="Shader" path="res://shaders/hole.gdshader" id="2_xebbi"]
-[ext_resource type="AudioStream" uid="uid://b6kvukhs72pk8" path="res://sfx/362205__taranp__horn_fail_wahwah_2.wav" id="3_d8go8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3hxq"]
 shader = ExtResource("2_xebbi")
@@ -90,12 +89,3 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_42rdu")
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_d8go8")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="current_animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

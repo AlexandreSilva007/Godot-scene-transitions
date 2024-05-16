@@ -9,8 +9,9 @@ extends Node
 #Available scnee Levels
 #LevelInfo is in utility/level_resource.gd
 @onready var levels =  {
-		"start" = LevelInfo.new("Hub Principal","res://levels/hub_principal.tscn"),
-		"level2" = LevelInfo.new("Deserto","res://levels/level_2.tscn"),
+		"start" = LevelInfo.new("Main Hub","res://levels/hub_principal.tscn"),
+		"level2" = LevelInfo.new("Desert","res://levels/level_2.tscn"),
+		"level3" = LevelInfo.new("Great City", "res://levels/level_3.tscn"),
 }
 
 #Avaliable transitions UI
@@ -31,6 +32,15 @@ var _new_level:LevelInfo = null
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1) #current scene is the current child
+
+
+#Change level scene (call this method to change scenes)
+#New level LevelInfo (see get_level_info() and levels array)
+#Transition UI with animation (see transitions array). Default = "rectangle"
+func goto_scene(levelinfo_name:String, transition:String="rectangle"):
+	_new_level = get_level_info(levelinfo_name) 
+	_instantiate_transition(transitions[transition]) # create transition UI
+	fade_out() #first fadeout, then after the the animation is finisehd the level in _new_level will be loaded
 	
 
 #Returns LevelInfo from levels array
@@ -38,17 +48,8 @@ func get_level_info(index:String):
 	if levels.has(index):
 		return levels[index]
 	else:
-		push_warning('Idx de Level não cadastrado')
+		push_warning('Level idx not found by GlobalManager')
 		return null
-
-
-#Change level scene (call this method to change scenes)
-#New level LevelInfo (see get_level_info() and levels array)
-#Transition UI with animation (see transitions array). Default = "rectangle"
-func goto_scene(levelinfo:String, transition:String="rectangle"):
-	_new_level = get_level_info(levelinfo) 
-	_instantiate_transition(transitions[transition]) # create transition UI
-	fade_out() #first fadeout, then after the the animation is finisehd the level in _new_level will be loaded
 
 
 func fade_out():

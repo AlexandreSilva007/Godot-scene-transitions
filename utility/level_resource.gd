@@ -1,3 +1,4 @@
+#Base class for level information. Just to hold level desired information
 class_name LevelInfo extends Resource #Resources are data containers
 
 var level_name:String

@@ -27,3 +27,4 @@ position = Vector2(735, -39)
 level_name = "level3"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
