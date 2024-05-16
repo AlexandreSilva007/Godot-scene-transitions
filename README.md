@@ -1,6 +1,5 @@
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
-# Title
-Scene Transitions Manager for Godot Engine
+# Scene Transitions Manager for Godot Engine
 
 ## Description
 Autoload class to manage scene transisitons between levels. 
@@ -29,7 +28,7 @@ func set_text(txt)
 Optional - The transition scene shows a text with the name of the level during transition.
 
 ## Contributing
----
+PRs accepted.
 
 ## License
 MIT © Alexandre Soares da Silva
