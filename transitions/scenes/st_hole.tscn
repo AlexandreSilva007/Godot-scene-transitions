@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://viqpch4hn6ej"]
 
-[ext_resource type="Shader" path="res://shaders/hole.gdshader" id="1_33hye"]
-[ext_resource type="Script" path="res://transitions/scenes/hole.gd" id="1_yv20c"]
-[ext_resource type="AudioStream" uid="uid://b6kvukhs72pk8" path="res://sfx/362205__taranp__horn_fail_wahwah_2.wav" id="2_eujwc"]
+[ext_resource type="Script" path="res://transitions/scenes/st_hole.gd" id="1_d4ylf"]
+[ext_resource type="Shader" path="res://shaders/hole.gdshader" id="2_xebbi"]
+[ext_resource type="AudioStream" uid="uid://b6kvukhs72pk8" path="res://sfx/362205__taranp__horn_fail_wahwah_2.wav" id="3_d8go8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3hxq"]
-shader = ExtResource("1_33hye")
+shader = ExtResource("2_xebbi")
 shader_parameter/raio = 1.5
 
 [sub_resource type="Animation" id="Animation_o36rj"]
@@ -52,7 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yv20c")
+script = ExtResource("1_d4ylf")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -92,7 +92,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_eujwc")
+stream = ExtResource("3_d8go8")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
