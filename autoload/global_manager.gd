@@ -2,10 +2,6 @@
 #get_animation_player() and (optionally) set_text(txt)
 extends Node
 
-#Scene of type Control that will be allocated(instantiated) to invoke fadein and fadeout animation.
-#It is mandatory that the scene has an AnimationPlayer with an animation called 'fade'
-#It is mandatory that the scene has a get_animation_player() method that returns the AnimationPlayer responsible for the fade animation
-
 #Available scnee Levels
 #LevelInfo is in utility/level_resource.gd
 @onready var levels =  {
@@ -14,7 +10,11 @@ extends Node
 		"level3" = LevelInfo.new("Great City", "res://levels/level_3.tscn"),
 }
 
-#Avaliable transitions UI
+
+#Avaliable transitions Controls
+#Scene of type Control that will be allocated(instantiated) to invoke fadein and fadeout animation.
+#It is mandatory that the scene has an AnimationPlayer with an animation called 'fade'
+#It is mandatory that the scene has a get_animation_player() method that returns the AnimationPlayer responsible for the fade animation
 @onready var transitions  = {
 		"circle" = preload("res://transitions/scenes/st_hole.tscn"),
 		"rectangle" = preload("res://transitions/scenes/st_color_rect.tscn"),
@@ -23,7 +23,7 @@ extends Node
 
 #Current level scene. When changing scenes, the current one is released and the new one becomes the current one
 var current_scene = null
-#Instance of the transition UI
+#Instance of the transition Control
 var _st_node:Control
 #Path of new level scene to be loaded. 
 var _new_level:LevelInfo = null
@@ -35,8 +35,8 @@ func _ready():
 
 
 #Change level scene (call this method to change scenes)
-#New level LevelInfo (see get_level_info() and levels array)
-#Transition UI with animation (see transitions array). Default = "rectangle"
+#levelinfo_name is a name of a map entry of a LevelInfo resource type. (see get_level_info() and levels array)
+#transition is a scene (Control) that represents a transition with animation (see transitions array). Default = "rectangle"
 func goto_scene(levelinfo_name:String, transition:String="rectangle"):
 	_new_level = get_level_info(levelinfo_name) 
 	_instantiate_transition(transitions[transition]) # create transition UI
@@ -53,7 +53,7 @@ func get_level_info(index:String):
 
 
 func fade_out():
-	#If there is a camera, centers the transition UI
+	#If there is a camera, centers the transition Control
 	if get_viewport().get_camera_2d() != null:
 		_st_node.global_position =  get_viewport().get_camera_2d().get_screen_center_position() - get_tree().root.content_scale_size*0.5
 	else:
@@ -63,7 +63,7 @@ func fade_out():
 		_st_node.set_text('')
 	
 	_st_node.get_animation_player().play_backwards('fade')
-	#await animation_finished before load level
+	#wait for animation_finished to complete before loading new level
 	await _st_node.get_animation_player().animation_finished
 	
 	if _new_level != null:
@@ -71,7 +71,7 @@ func fade_out():
 
 
 func fade_in():
-	#If there is a camera, centers the transition UI
+	#If there is a camera, centers the transition Control
 	if get_viewport().get_camera_2d() != null:
 		_st_node.global_position =  get_viewport().get_camera_2d().get_screen_center_position() - get_tree().root.content_scale_size*0.5
 	else:
@@ -81,7 +81,7 @@ func fade_in():
 	if _st_node.has_method('set_text'):
 		_st_node.set_text(_new_level.level_name)
 	
-	#await banimation_finished before free transition UI
+	#wait for animation_finished to complete before freeing transition Control
 	await _st_node.get_animation_player().animation_finished
 	_st_node.queue_free()
 
@@ -89,7 +89,7 @@ func fade_in():
 func _instantiate_transition(transition_ps):
 	_st_node = transition_ps.instantiate()
 	add_child(_st_node)
-	_st_node.z_index = RenderingServer.CANVAS_ITEM_Z_MAX #puts the transition UI in front of all components
+	_st_node.z_index = RenderingServer.CANVAS_ITEM_Z_MAX #puts the transition Control in front of all components
 
 
 func _load_scene():

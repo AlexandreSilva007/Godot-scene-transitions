@@ -1,18 +1,18 @@
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
-# Scene Transitions Manager for Godot Engine
+# 2D Scene Transition Manager for Godot Engine
 
 ## Description
-Autoload class to manage scene transisitons between levels. 
+Autoload class to manage scene transitions between levels. 
 
 ## Install
-Copy /autoload to your porject. In project settings add global_manager.gd as an autoload file. 
+Copy /autoload to your project. In project settings add global_manager.gd as an autoload file. 
 
 ## Usage
 Considering your autoload was named GlobalManager:
 ```
-GlobalMananger.goto_scene(<levelinfo:LevelInfo>, <transition:String>)
+GlobalMananger.goto_scene(<level_info_name>, <transition:String>)
 ```
-LevelInfo is a Resource under utility folder. It encapsulates level atributes like PackedScene path, level name, complete, etc. It can be freely cusmomized.
+level_info_name is a name of a map entry of a LevelInfo resource type, a Resource under utility folder. It encapsulates level atributes like PackedScene path, level name, complete, etc. It can be freely cusmomized.
 transition is an optional parameter. Default is a simple fade in and out rectangle.
 In this project there are another examples: sonic_like.tscn and hole.tscn.
 
