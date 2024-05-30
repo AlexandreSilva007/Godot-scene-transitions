@@ -27,7 +27,8 @@ var current_scene = null
 var _st_node:Control
 #Path of new level scene to be loaded. 
 var _new_level:LevelInfo = null
-
+#Variable to pass custom parameters between scenes
+var parameters = null
 
 func _ready():
 	var root = get_tree().root
@@ -87,6 +88,9 @@ func fade_in():
 
 
 func _instantiate_transition(transition_ps):
+	#If for some reason the fade_in was interrupted and _st_node was ot freed
+	if(_st_node) != null:
+		_st_node.free()
 	_st_node = transition_ps.instantiate()
 	add_child(_st_node)
 	_st_node.z_index = RenderingServer.CANVAS_ITEM_Z_MAX #puts the transition Control in front of all components
